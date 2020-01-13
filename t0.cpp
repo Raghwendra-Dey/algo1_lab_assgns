@@ -185,6 +185,69 @@ void raw_print_borders(struct node* c)
 	cout << endl << endl;
 }
 
+void neatprint(struct node* c, int yr)
+{
+	struct node* curr = c;
+	struct node* start = curr;
+	cout << "                           ";
+	cout << "Calender of " << yr << endl;
+	
+	for(int i=0;i<20;i++)
+	{
+		if(i%5==0)
+		{
+			cout << endl;
+			switch(i)
+			{
+				case 0:
+					cout << "       January       ";
+					cout << "         February      ";
+					cout << "          March        " << endl;
+					break;
+				case 5:
+					cout << "        April        ";
+					cout << "           May         ";
+					cout << "          June         " << endl;
+					break;
+				case 10:
+					cout << "         July        ";
+					cout << "          August       ";
+					cout << "        September      " << endl;
+					break;
+				case 15:
+					cout << "       October       ";
+					cout << "         November      ";
+					cout << "         December      " << endl;
+					break;
+			}
+			for(int i=0;i<3;i++)
+			{
+				cout << "Su Mo Tu We Th Fr Sa   ";
+			}
+			cout << endl;
+		}
+
+		for(int j=0;j<21;j++)
+		{
+			if(curr->data)
+			{
+				if((curr->data)/10==0)
+					cout << ' ';
+				cout << curr->data << ' ';
+			}
+			else
+				cout << "   ";
+			curr = curr->h;
+			if((j+1)%7==0)
+				cout << "  ";
+		}
+		cout << endl;
+		start = start->v;
+		curr = start;
+	}
+	cout << endl << endl;
+}
+
 int getyear()
 {
 	int yr;
@@ -261,7 +324,7 @@ int main()
 	int yr = getyear();
 	// fill_calendar(c,4,5,yr);
 	fill_calendar1(c,yr);
-	raw_print_borders(c);
+	neatprint(c, yr);
 }
 
 
