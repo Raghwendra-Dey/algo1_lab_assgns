@@ -1,5 +1,8 @@
-// ps link: http://cse.iitkgp.ac.in/~aritrah/course/theory/Algo1/Spring2020/A0.pdf
-// i have added some more features as well ;) 
+/*
+Name: Raghwendra Dey
+link: https://cse.iitkgp.ac.in/~abhij/course/lab/Algo1/Spring20/A2.pdf
+i have added some more features as well ;)
+*/
 
 #include <iostream>
 #include <stdlib.h>
