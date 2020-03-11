@@ -199,7 +199,7 @@ void method2(vector<line> l_bundle)
 		{
 			if(res.empty())
 			{
-				cout << "empty h bsdk!!" << endl;
+				cout << "stack is empty!!" << endl;
 				break;
 			}
 			pair<pair<point, point> ,line> elem = res.top();
@@ -208,9 +208,11 @@ void method2(vector<line> l_bundle)
 			point inter = inter1.first;
 			if(lies_bet(inter, elem.first))
 			{
-				cout << i << endl;
 				res.push(make_pair(make_pair(elem.first.first, inter), elem.second));
-				res.push(make_pair(make_pair(inter, make_pair(INFINITY, INFINITY)), l_bundle[i]));
+				if(l_bundle[i].second.first > 0)
+					res.push(make_pair(make_pair(inter, make_pair(INFINITY, INFINITY)), l_bundle[i]));
+				else
+					res.push(make_pair(make_pair(inter, make_pair(INFINITY, -INFINITY)), l_bundle[i]));
 				break;
 			}
 		}
