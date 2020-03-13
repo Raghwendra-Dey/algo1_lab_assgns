@@ -1,6 +1,7 @@
 /*
 Name: Raghwendra Dey
 link: https://cse.iitkgp.ac.in/~abhij/course/lab/Algo1/Spring20/A7.pdf
+status: working fine
 */
 
 #include <bits/stdc++.h>

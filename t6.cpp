@@ -1,6 +1,10 @@
 /*
 Name: Raghwendra Dey
 link: https://cse.iitkgp.ac.in/~abhij/course/lab/Algo1/Spring20/A6.pdf
+status: working fine
+comments: wasted more than 3 hours to find a seg fault which was due to basic pds bug, using root_idx = ceil(n/2) in rebalance function,
+but n/2 is integer due to both operands being intergers so ceil(n/2) was also floor(n/2) due to typecasting of float
+n/2 to integer. solved by using n/2.0... loll :p
 */
 
 #include <bits/stdc++.h>
@@ -65,6 +69,8 @@ struct node* swapchild(struct node* T)
 
 struct node* lrotate(struct node* T)
 {
+	if(T->r_child == NULL)
+		cout << "NULL h bsdk" << endl;
 	struct node* root = T->r_child;
 	T->r_child = root->l_child;
 	root->l_child = T;
@@ -127,14 +133,18 @@ void bsort(struct node* T, int n)
 struct node* rebalance(struct node* T, int n, bool flag)
 {
 	if(n == 0)
+	{
 		return NULL;
+	}
 	if(n == 1)
+	{
 		return (flag?T->l_child:T->r_child);
+	}
 	int root_idx;
 	struct node* root = T;
 	if(flag)
 	{
-		root_idx = ceil(n/2);
+		root_idx = ceil(n/2.0);
 		for(int i=0;i<root_idx;i++)
 			root = root->l_child;
 		while(T->l_child != root)

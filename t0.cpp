@@ -1,6 +1,7 @@
 /*
 Name: Raghwendra Dey
 link: https://cse.iitkgp.ac.in/~abhij/course/lab/Algo1/Spring20/A2.pdf
+status: working fine
 i have added some more features as well ;)
 */
 

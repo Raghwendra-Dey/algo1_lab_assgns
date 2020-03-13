@@ -1,6 +1,7 @@
 /*
 Name: Raghwendra Dey
 link: https://cse.iitkgp.ac.in/~abhij/course/lab/Algo1/Spring20/A3.pdf
+status: working fine
 */
 
 #include <bits/stdc++.h>
@@ -191,7 +192,11 @@ bool lies_bet(point p1, pair<point, point > pp2)
 void method2(vector<line> l_bundle)
 {
 	stack<pair<pair<point, point> , line> > res;
-	res.push(make_pair(make_pair(make_pair(-INFINITY, INFINITY), make_pair(INFINITY, -INFINITY)), l_bundle[0]));
+	if(l_bundle[0].second.first < 0)
+		res.push(make_pair(make_pair(make_pair(-INFINITY, INFINITY), make_pair(INFINITY, -INFINITY)), l_bundle[0]));
+	else
+		res.push(make_pair(make_pair(make_pair(-INFINITY, -INFINITY), make_pair(INFINITY, INFINITY)), l_bundle[0]));
+
 
 	for(int i=1;i<l_bundle.size();i++)
 	{
@@ -228,6 +233,17 @@ void method2(vector<line> l_bundle)
 	print_res(v);
 }
 
+void print_lines(std::vector<line> l_bundle)
+{
+	for(int i=0;i<l_bundle.size();i++)
+	{
+		if(l_bundle[i].second.second > 0)
+			cout << "Line\t" << l_bundle[i].first << ": y =\t" << l_bundle[i].second.first << " x +" << l_bundle[i].second.second << endl;
+		else
+			cout << "Line\t" << l_bundle[i].first << ": y =\t" << l_bundle[i].second.first << " x " << l_bundle[i].second.second << endl;
+	}
+}
+
 int main()
 {
 	int n;
@@ -245,18 +261,14 @@ int main()
 		l_bundle.push_back(l);
 	}
 	cout << "+++ Lines before sorting" << endl;
-	for(int i=0;i<l_bundle.size();i++)
-	{
-		if(l_bundle[i].second.second > 0)
-			cout << "Line\t" << l_bundle[i].first << ": y =\t" << l_bundle[i].second.first << " x +" << l_bundle[i].second.second << endl;
-		else
-			cout << "Line\t" << l_bundle[i].first << ": y =\t" << l_bundle[i].second.first << " x " << l_bundle[i].second.second << endl;
-	}
+	print_lines(l_bundle);
 
 	cout << "+++ Method 1" << endl;
 	method1(l_bundle);
 
+	cout << "+++ Lines after sorting" << endl;
 	l_bundle = merge_sort(l_bundle, 0, l_bundle.size());
+	print_lines(l_bundle);
 
 	cout << "+++ Method 2" << endl;
 	method2(l_bundle);

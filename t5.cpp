@@ -1,6 +1,8 @@
 /*
 Name: Raghwendra Dey
 link: https://cse.iitkgp.ac.in/~abhij/course/lab/Algo1/Spring20/A5.pdf
+status: working fine
+comments: good example of drastic effects of not using dynamic allocation of memory, see the block comment inside the optimalbuy1 and optimalbuy2
 */
 
 #include <bits/stdc++.h>
@@ -18,8 +20,22 @@ double comp_prof(double p, int s, int m, int t)
 
 void optimalbuy1(int n,int C,int *c,int *s,int *t,double *p)
 {
+	/*
+	initially i was doing:
 	double T[n][C+1];
 	int M[n][C+1];
+	but this was giving seg fault only in the case of n = 128 and C = 17723
+	but after dynamic allocation of these and freeing the pointers after use it worked!!
+	though very very very slow!!
+	*/
+	double **T = (double **)malloc(n*sizeof(double *));
+	int **M = (int **)malloc(n*sizeof(int *));
+
+	for(int i=0;i<n;i++)
+	{
+		T[i] = (double *)malloc((C+1)*sizeof(double));
+		M[i] = (int *)malloc((C+1)*sizeof(int));
+	}
 
 	for(int j=0;j<C+1;j++)
 	{
@@ -77,12 +93,33 @@ void optimalbuy1(int n,int C,int *c,int *s,int *t,double *p)
 	}
 	cout << "--- Total buying cost = " << tot_buy_cost << endl;
 	cout << "--- Expected total profit = " << T[n-1][C] << endl;
+	for(int i=0;i<n;i++)
+	{
+		free(M[i]);
+		free(T[i]);
+	}
+	free(M);
+	free(T);
 }
 
 void optimalbuy2(int n,int C,int *c,int *s,int *t,int *r,double *p,double *q)
 {
+	/*
+	initially i was doing:
 	double T[n][C+1];
 	pii M[n][C+1];
+	but this was giving seg fault only in the case of n = 128 and C = 17723
+	but after dynamic allocation of these and freeing the pointers after use it worked!!
+	though very very very slow!!
+	*/
+	double **T = (double **)malloc(n*sizeof(double *));
+	pii **M = (pii **)malloc(n*sizeof(pii *));
+
+	for(int i=0;i<n;i++)
+	{
+		T[i] = (double *)malloc((C+1)*sizeof(double));
+		M[i] = (pii *)malloc((C+1)*sizeof(pii));
+	}
 
 	for(int j=0;j<C+1;j++)
 	{
@@ -166,6 +203,14 @@ void optimalbuy2(int n,int C,int *c,int *s,int *t,int *r,double *p,double *q)
 	}
 	cout << "--- Total buying cost = " << tot_buy_cost << endl;
 	cout << "--- Expected total profit = " << T[n-1][C] << endl;
+
+	for(int i=0;i<n;i++)
+	{
+		free(M[i]);
+		free(T[i]);
+	}
+	free(M);
+	free(T);
 }
 
 int main()

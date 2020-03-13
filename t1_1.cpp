@@ -1,7 +1,7 @@
 /*
 Name: Raghwendra Dey
-Roll No: 18IE10018
-System No: 28
+link: https://cse.iitkgp.ac.in/~abhij/course/lab/Algo1/Spring20/A1.pdf
+status: method 3 not implemented yet
 */
 
 #include <iostream>
@@ -18,6 +18,7 @@ string met0(int *seq, int n)
 	for(int a = 1;a<=n;a++)
 		for(int b=a+1;b<=n;b++)
 			for(int c=b+1;c<=n;c++)
+			{
 				for(int it=0;it<n;it++)
 				{
 					if(seq[it] == a)
@@ -27,12 +28,11 @@ string met0(int *seq, int n)
 					else if(seq[it] == c)
 						i = it; 
 				}
-	if((i<j)&&(j<k))
-	{
-		return "Unalgolicious";
-	}
-	else
-		return "Algolicious";
+				if((i<j)&&(j<k))
+					return "Unalgolicious";
+			}
+	
+	return "Algolicious";
 }
 
 string met1(int *seq, int n)
