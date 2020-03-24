@@ -257,6 +257,5 @@ int main()
 	vi res;
 	res.second = 0;
 	int MAX_STEPS = ceil(log(n)/log(2));
-	cout << MAX_STEPS << endl;
 	optimal(n, a, k, MAX_STEPS);
 }
