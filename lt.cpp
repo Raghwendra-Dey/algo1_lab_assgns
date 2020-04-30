@@ -1,7 +1,7 @@
 /*
 Name: Raghwendra Dey
 link: https://cse.iitkgp.ac.in/~abhij/course/lab/Algo1/Spring20/LT.pdf
-status: lag die dada ;-;
+status: hag die dada ;-;
 */
 
 #include <bits/stdc++.h>
